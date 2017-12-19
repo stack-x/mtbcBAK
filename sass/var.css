@@ -1,0 +1,63 @@
+/*
+Error: Invalid CSS after "font-family ": expected selector, was "$font-stack"
+        on line 6 of var.sass
+
+1: $font-stack: "Helvetica Neue", Helvetica, Arial, sans-serif
+2: $primary-color: #333
+3: $link-color: #0000ff
+4: 
+5: body
+6:   font-family $font-stack
+7:   color: $primary-color
+8: 
+9: a
+10:   color: $link-color
+
+Backtrace:
+var.sass:6
+/usr/lib/ruby/vendor_ruby/sass/scss/parser.rb:1179:in `expected'
+/usr/lib/ruby/vendor_ruby/sass/scss/parser.rb:1115:in `expected'
+/usr/lib/ruby/vendor_ruby/sass/scss/static_parser.rb:21:in `parse_selector'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:425:in `visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `block in with_base'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:115:in `with_frame'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `with_base'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:431:in `block (2 levels) in visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:431:in `map'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:431:in `block in visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:429:in `visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `block in with_base'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:115:in `with_frame'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `with_base'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `map'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:166:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:186:in `visit_root'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:157:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:8:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:36:in `css_tree'
+/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/usr/lib/ruby/vendor_ruby/sass/engine.rb:378:in `_render_with_sourcemap'
+/usr/lib/ruby/vendor_ruby/sass/engine.rb:295:in `render_with_sourcemap'
+/usr/lib/ruby/vendor_ruby/sass/exec/sass_scss.rb:410:in `run'
+/usr/lib/ruby/vendor_ruby/sass/exec/sass_scss.rb:63:in `process_result'
+/usr/lib/ruby/vendor_ruby/sass/exec/base.rb:52:in `parse'
+/usr/lib/ruby/vendor_ruby/sass/exec/base.rb:19:in `parse!'
+/usr/bin/sass:8:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"font-family \": expected selector, was \"$font-stack\"\A         on line 6 of var.sass\A \A 1: $font-stack: \"Helvetica Neue\", Helvetica, Arial, sans-serif\A 2: $primary-color: #333\A 3: $link-color: #0000ff\A 4: \A 5: body\A 6:   font-family $font-stack\A 7:   color: $primary-color\A 8: \A 9: a\A 10:   color: $link-color"; }
