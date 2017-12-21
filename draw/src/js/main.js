@@ -20,14 +20,35 @@ var draw = (function(){
     x1=0,
     y1=0,
 
-    //ending x,y cords
+    //ending x,y coords
     x2=0,
     y2=0,
 
+    //previous x,y coords
+    lx=0,
+    ly=0,
+
     //what shape are we drawing
-    shape='';
+    shape='',
+
+    //have we started drawing yet
+    isDrawing=false;
 
   return{
+
+    setIsDrawing: function(bool) {
+      isDrawing = bool;
+    },
+
+    getIsDrawing: function() {
+      return isDrawing;
+    },
+
+    //returns the current shape
+    getShape: function() {
+      return shape;
+    },
+
     //Retun a random color
     randColor: function() {
       return '#' + Math.floor(Math.random()*16777215).toString(16);
@@ -40,8 +61,14 @@ var draw = (function(){
 
     //Set the x,y coords
     setXY: function(evt) {
+      //Set the previous coords
+      lx = x;
+      ly = y;
+
       x = (evt.clientX - rect.left) - canvas.offsetLeft;
       y = (evt.clientY - rect.top);
+
+      //console.log({'x':x, 'y': y, 'lx': lx, 'ly':ly});
     },
 
     setStart: function() {
@@ -94,6 +121,14 @@ var draw = (function(){
       ctx.stroke();
     },
 
+    drawPath: function() {
+      ctx.strokeStyle = this.randColor();
+      ctx.beginPath();
+      ctx.moveTo(lx,ly);
+      ctx.lineTo(x,y);
+      ctx.stroke();
+    },
+
     //Draws a selected shape
     draw: function() {
 
@@ -104,6 +139,8 @@ var draw = (function(){
         this.drawLine();
       }else if( shape==='circle' ){
         this.drawCircle();
+      }else if( shape==='path' ){
+        this.drawPath();
       }else{
         alert('Please choose a shape');
       }
@@ -142,19 +179,31 @@ document.getElementById('btnCircle').addEventListener('click', function(){
   draw.setShape('circle');
 });
 
+//Choose to draw a line
+document.getElementById('btnPath').addEventListener('click', function(){
+  draw.setShape('path');
+});
+
 //Track the x,y position
 draw.getCanvas().addEventListener('mousemove', function(evt){
   draw.setXY(evt);
   draw.writeXY();
+
+  if(draw.getShape()==='path' && draw.getIsDrawing()===true){
+    draw.draw();
+  }
+
 });
 
 //Set starting the x,y position
 draw.getCanvas().addEventListener('mousedown', function(){
   draw.setStart();
+  draw.setIsDrawing(true);
 });
 
 //Set ending the x,y position
 draw.getCanvas().addEventListener('mouseup', function(){
   draw.setEnd();
   draw.draw();
+  draw.setIsDrawing(false);
 });
