@@ -265,11 +265,13 @@ document.getElementById('fillColor').addEventListener('change', function(){
 //Set the stroke color
 document.getElementById('randStrokeColor').addEventListener('change', function(){
   draw.setStrokeColor('');
+  document.getElementById('strokeColor').value = '#000000';
 });
 
 //Set the fill color
 document.getElementById('randFillColor').addEventListener('change', function(){
   draw.setFillColor('');
+  document.getElementById('fillColor').value = '#000000';
 });
 
 //Track the x,y position
