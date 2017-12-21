@@ -32,14 +32,46 @@ var draw = (function(){
     shape='',
 
     //have we started drawing yet
-    isDrawing=false;
+    isDrawing=false,
+
+    stroke='',
+
+    fill='';
 
   return{
 
+    //A setter for stroke
+    setStrokeColor: function(color) {
+      stroke = color;
+    },
+
+    //A setter for fill
+    setFillColor: function(color) {
+      fill = color;
+    },
+
+    getFillColor: function() {
+      if(fill===''){
+        return this.randColor();
+      }else{
+        return fill;
+      }
+    },
+
+    getStrokeColor: function() {
+      if(stroke===''){
+        return this.randColor();
+      }else{
+        return stroke;
+      }
+    },
+
+    //A setter for isDrawing
     setIsDrawing: function(bool) {
       isDrawing = bool;
     },
 
+    //A getter for isDrawing
     getIsDrawing: function() {
       return isDrawing;
     },
@@ -89,8 +121,8 @@ var draw = (function(){
 
     //Draws a rectangle
     drawRect: function() {
-      ctx.fillStyle = this.randColor();
-      ctx.strokeStyle = this.randColor();
+      ctx.fillStyle = this.getFillColor();
+      ctx.strokeStyle = this.getStrokeColor();
 
       ctx.fillRect(x1, y1, (x2-x1), (y2-y1));
       ctx.strokeRect(x1, y1, (x2-x1), (y2-y1));
@@ -98,7 +130,7 @@ var draw = (function(){
 
     //Draws a line
     drawLine: function() {
-      ctx.strokeStyle = this.randColor();
+      ctx.strokeStyle = this.getStrokeColor();
       ctx.beginPath();
       ctx.moveTo(x1,y1);
       ctx.lineTo(x2,y2);
@@ -107,8 +139,8 @@ var draw = (function(){
 
     //Draws a circle
     drawCircle: function() {
-      ctx.fillStyle = this.randColor();
-      ctx.strokeStyle = this.randColor();
+      ctx.fillStyle = this.getFillColor();
+      ctx.strokeStyle = this.getStrokeColor();
 
       //Calculate the radius using Pythagoreans theorem
       let a = (x1-x2);
@@ -122,7 +154,7 @@ var draw = (function(){
     },
 
     drawPath: function() {
-      ctx.strokeStyle = this.randColor();
+      ctx.strokeStyle = this.getStrokeColor();
       ctx.beginPath();
       ctx.moveTo(lx, ly);
       ctx.lineTo(x,y);
@@ -131,8 +163,8 @@ var draw = (function(){
     },
 
     drawTriangle: function() {
-      ctx.fillStyle = this.randColor();
-      ctx.strokeStyle = this.randColor();
+      ctx.fillStyle = this.getFillColor();
+      ctx.strokeStyle = this.getStrokeColor();
 
       //hypotenuse
       let a = (x1-x2);
@@ -211,6 +243,34 @@ document.getElementById('btnTriangle').addEventListener('click', function(){
   draw.setShape('triangle');
 });
 
+//Set the stroke color
+document.getElementById('strokeColor').addEventListener('change', function(){
+
+  let rsc = document.getElementById('randStrokeColor');
+  if(rsc.checked == true){
+    rsc.checked=false;
+  }
+  draw.setStrokeColor(document.getElementById('strokeColor').value);
+});
+
+//Set the fill color
+document.getElementById('fillColor').addEventListener('change', function(){
+  let rfc = document.getElementById('randFillColor');
+  if(rfc.checked == true){
+    rfc.checked=false;
+  }
+  draw.setFillColor(document.getElementById('fillColor').value);
+});
+
+//Set the stroke color
+document.getElementById('randStrokeColor').addEventListener('change', function(){
+  draw.setStrokeColor('');
+});
+
+//Set the fill color
+document.getElementById('randFillColor').addEventListener('change', function(){
+  draw.setFillColor('');
+});
 
 //Track the x,y position
 draw.getCanvas().addEventListener('mousemove', function(evt){
