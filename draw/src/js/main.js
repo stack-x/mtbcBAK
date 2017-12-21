@@ -28,6 +28,10 @@ var draw = (function(){
     shape='';
 
   return{
+    //Retun a random color
+    randColor: function() {
+      return this.randColor();
+    },
 
     //Sets the shape to be drawn
     setShape(shp) {
@@ -58,15 +62,27 @@ var draw = (function(){
 
     //Draws a rectangle
     drawRect: function() {
-      ctx.fillStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
+      ctx.fillStyle = this.randColor();
       ctx.fillRect(x1, y1, (x2-x1), (y2-y1));
     },
 
     drawLine: function() {
-      ctx.strokeStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
+      ctx.strokeStyle = this.randColor();
       ctx.beginPath();
       ctx.moveTo(x1,y1);
       ctx.lineTo(x2,y2);
+      ctx.stroke();
+    },
+
+    drawCircle: function() {
+      ctx.fillStyle = this.randColor();
+
+      let a = (x1-x2);
+      let b = (y1-y2);
+      let radius = Math.sqrt(a*a + b*b);
+
+      ctx.beginPath();
+      ctx.arc(x1, y1, radius, 0, 2 * Math.PI);
       ctx.stroke();
     },
 
@@ -78,6 +94,8 @@ var draw = (function(){
         this.drawRect();
       }else if( shape==='line' ){
         this.drawLine();
+      }else if( shape==='circle' ){
+        this.drawCircle();
       }else{
         alert('Please choose a shape');
       }
@@ -109,6 +127,11 @@ document.getElementById('btnRect').addEventListener('click', function(){
 //Choose to draw a line
 document.getElementById('btnLine').addEventListener('click', function(){
   draw.setShape('line');
+});
+
+//Choose to draw a line
+document.getElementById('btnCircle').addEventListener('click', function(){
+  draw.setShape('circle');
 });
 
 //Track the x,y position
