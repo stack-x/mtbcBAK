@@ -124,10 +124,30 @@ var draw = (function(){
     drawPath: function() {
       ctx.strokeStyle = this.randColor();
       ctx.beginPath();
-      ctx.moveTo(lx,ly);
+      ctx.moveTo(lx, ly);
       ctx.lineTo(x,y);
+      ctx.closePath();
       ctx.stroke();
     },
+
+    drawTriangle: function() {
+      ctx.fillStyle = this.randColor();
+      ctx.strokeStyle = this.randColor();
+
+      //hypotenuse
+      let a = (x1-x2);
+      let b = (y1-y2);
+      let c = Math.sqrt(a*a + b*b);
+
+      ctx.beginPath();
+      ctx.moveTo(x1,y1);
+      ctx.lineTo(x1+c, y1+c);
+      ctx.lineTo(x2,y2);
+      ctx.lineTo(x1,y1);
+      ctx.stroke();
+      ctx.fill();
+    },
+
 
     //Draws a selected shape
     draw: function() {
@@ -141,6 +161,8 @@ var draw = (function(){
         this.drawCircle();
       }else if( shape==='path' ){
         this.drawPath();
+      }else if( shape==='triangle' ){
+        this.drawTriangle();
       }else{
         alert('Please choose a shape');
       }
@@ -183,6 +205,12 @@ document.getElementById('btnCircle').addEventListener('click', function(){
 document.getElementById('btnPath').addEventListener('click', function(){
   draw.setShape('path');
 });
+
+//Choose to draw a line
+document.getElementById('btnTriangle').addEventListener('click', function(){
+  draw.setShape('triangle');
+});
+
 
 //Track the x,y position
 draw.getCanvas().addEventListener('mousemove', function(evt){
