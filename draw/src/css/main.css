@@ -42,3 +42,22 @@ nav ul li span{
   height: 2rem;
   line-height: 2rem;
 }
+
+
+nav ul li div{
+  line-height: 2.2rem;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
