@@ -30,7 +30,7 @@ var draw = (function(){
   return{
     //Retun a random color
     randColor: function() {
-      return this.randColor();
+      return '#' + Math.floor(Math.random()*16777215).toString(16);
     },
 
     //Sets the shape to be drawn
@@ -63,9 +63,13 @@ var draw = (function(){
     //Draws a rectangle
     drawRect: function() {
       ctx.fillStyle = this.randColor();
+      ctx.strokeStyle = this.randColor();
+
       ctx.fillRect(x1, y1, (x2-x1), (y2-y1));
+      ctx.strokeRect(x1, y1, (x2-x1), (y2-y1));
     },
 
+    //Draws a line
     drawLine: function() {
       ctx.strokeStyle = this.randColor();
       ctx.beginPath();
@@ -74,15 +78,19 @@ var draw = (function(){
       ctx.stroke();
     },
 
+    //Draws a circle
     drawCircle: function() {
       ctx.fillStyle = this.randColor();
+      ctx.strokeStyle = this.randColor();
 
+      //Calculate the radius using Pythagoreans theorem
       let a = (x1-x2);
       let b = (y1-y2);
       let radius = Math.sqrt(a*a + b*b);
 
       ctx.beginPath();
       ctx.arc(x1, y1, radius, 0, 2 * Math.PI);
+      ctx.fill();
       ctx.stroke();
     },
 
