@@ -1,0 +1,22 @@
+<script>
+
+  var items = [
+    'for',
+    'do...while',
+    'for...in',
+    'for...of'
+  ];
+
+  var msg = 'JavaScript supports ' + items.length + ' types of loop';
+  var i = 0;
+  var li = '';
+
+  while(i<items.length) {
+    li += `<li>${items[i]}</li>`;
+    i++;
+  }
+
+  msg += `<ul>${li}</ul>`;
+
+  document.write(msg);
+</script>

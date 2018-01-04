@@ -1,0 +1,51 @@
+<a href="?color=ff0000">Red</a> |
+<a href="?color=00ff00">Green</a> |
+<a href="?color=0000ff">Blue</a>
+
+<script>
+
+var label= null;
+var color = null;
+var GET = {};
+
+
+if(document.location.toString().indexOf('?')!==-1){
+
+  var query = document.location
+    .toString()
+    .replace(/^.*?\?/,'')
+    .replace(/#.*$/, '')
+    .split('&');
+
+  for(var i=0; i<query.length; i++) {
+    var aux = decodeURIComponent(query[i]).split('=');
+    GET[aux[0]] = aux[1];
+  }
+
+  if(GET['color'] !== 'undefined') {
+    color = `#${GET['color']}`;
+  }
+
+  switch(color) {
+    case '#ff0000':
+      label = 'RED';
+      break;
+
+    case '#00ff00':
+      label = 'GREEN';
+      break;
+
+    case '#0000ff':
+      label='BLUE';
+      break;
+
+    default:
+      label='Unknown';
+      break;
+  }
+  
+  document.write(`<div style="color:${color}">The color is ${label}</div>`);
+}
+
+
+</script>
